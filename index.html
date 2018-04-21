@@ -127,6 +127,9 @@ body {
 //Tells which file names to look for in each given set
 set0 = ["5.png","4.png","3.png","2.png","1.png"];
 set1 = ["5.png","4.png","3.png","2.png","1.png"];
+set2 = ["5.png","4.png","3.png","2.png","1.png"];
+set3 = ["5.png","4.png","3.png","2.png","1.png"];
+set4 = ["5.png","4.png","3.png","2.png","1.png"];
 
 //Default settings for the current image and position
 imageSet = 0;
@@ -165,6 +168,48 @@ function refreshImage() {
 		
 		console.log(currentAudio.attr("src"));
 		
+    } else if ( imageSet == 2 ) {
+        
+        $( ".image" ).each(function( index, element ) {
+            if (set2[index] != "") {
+                $( this ).attr("src", "images/" + position + "/" + set1[index] + ")");
+                console.log(set1[index]);
+            } else {
+                $( this ).attr("src", "");
+                console.log(set1[index]);
+            }
+        });
+		
+		console.log(currentAudio.attr("src"));
+		
+    } else if ( imageSet == 3 ) {
+        
+        $( ".image" ).each(function( index, element ) {
+            if (set3[index] != "") {
+                $( this ).attr("src", "images/" + position + "/" + set1[index] + ")");
+                console.log(set1[index]);
+            } else {
+                $( this ).attr("src", "");
+                console.log(set1[index]);
+            }
+        });
+		
+		console.log(currentAudio.attr("src"));
+		
+    } else if ( imageSet == 4 ) {
+        
+        $( ".image" ).each(function( index, element ) {
+            if (set4[index] != "") {
+                $( this ).attr("src", "images/" + position + "/" + set1[index] + ")");
+                console.log(set1[index]);
+            } else {
+                $( this ).attr("src", "");
+                console.log(set1[index]);
+            }
+        });
+		
+		console.log(currentAudio.attr("src"));
+		
     }
 
 }
@@ -175,19 +220,15 @@ function refreshImage() {
 $( "#middle" ).click(function() { 
     position++;
 	
-     if(position == 2) {
+     if(position == 5) {
         position = 0;
     } 
 	
-	$('#shuffle-audio').trigger('play');
     
-		currentAudio.animate({volume: 0}, 1000).delay(100);
-		currentAudio[0].currentTime = 0;
+		currentAudio[0].pause();
+		$('#shuffle-audio').trigger('play');
 		currentAudio.attr("src", "audio/bg" + position + ".mp3");
-		currentAudio[0].pause;
-		currentAudio[0].load;
-		currentAudio[0].oncanplaythrough = currentAudio[0].play();
-		currentAudio.animate({volume: 1}, 1000);
+		currentAudio[0].play();
 	
 	refreshImage();
 
