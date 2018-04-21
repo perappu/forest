@@ -22,7 +22,7 @@ body {
     position: fixed;
 }
 
-.scene, .layer {
+.scene {
     display: block;
     height: 100%;
     width: 100%;
@@ -31,8 +31,7 @@ body {
 }
 
 .layer {
-    height: 100%;
-    width: 100%;
+
 }
 
 .scene {
@@ -43,10 +42,8 @@ body {
     left: 0;
     position: relative;
     margin: 0 auto;
-    width: 300%;
-    left: -100%;
-    height: 130%;
-    top: -10%;
+    width: 100%;
+    height: 100%;
 }
 
 .container {
@@ -58,26 +55,32 @@ body {
 }
 
 .image {
-    height: 100%;
-    width: 100%;
-    position: relative;
+    height: 120%;
+    width: 120%;
+
+	display: block;
 }
 
 /* Default styling for each layer */
 #image1 {
-
+	
 }
 
 #image2 {
-
+	position: relative;
+	top: -10%;
+	left: -10%;
 }
 
 #image3 {
-
+	position: relative;
+	top: 0;
+	left: -10%;
 }
 
 #image4 {
-
+	position: relative;
+	left: -10%;
 }
 
 #image5 {
@@ -96,11 +99,11 @@ body {
 <!--Parallax layers-->
 <div id="container" class="container">
     <ul id="scene" class="scene">
-        <li class="layer" data-depth="0.50"><div class="image"><image id="image5" src="images/0/5.png"></div></li>
-        <li class="layer" data-depth="0.60"><div class="image"><image id="image4" src="images/0/4.png"></div></li>
-        <li class="layer" data-depth="0.70"><div class="image"><image id="image3" src="images/0/3.png"></div></li>
-        <li class="layer" data-depth="0.80"><div class="image"><image id="image2" src="images/0/2.png"></div></li>
-        <li class="layer" data-depth="0.90"><div class="image"><image id="image1" src="images/0/1.png"></div></li>
+        <li class="layer" data-depth="0.50"><div class="image" id="image5"><image src="images/0/5.png"></div></li>
+        <li class="layer" data-depth="0.60"><div class="image" id="image4"><image src="images/0/4.png"></div></li>
+        <li class="layer" data-depth="0.70"><div class="image" id="image3"><image src="images/0/3.png"></div></li>
+        <li class="layer" data-depth="0.80"><div class="image" id="image2"><image src="images/0/2.png"></div></li>
+        <li class="layer" data-depth="0.90"><div class="image" id="image1"><image src="images/0/1.png"></div></li>
     </ul>
 </div>
 
