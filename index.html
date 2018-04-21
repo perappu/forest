@@ -36,7 +36,7 @@ body {
 
 .scene {
     display: block;
-    top: 0;
+    top: -10;
     right: 0;
     bottom: 0;
     left: 0;
@@ -51,13 +51,13 @@ body {
     min-height: 768px;
     height: 100%;
     position: relative;
-    overflow: hidden;
+	overflow: hidden;
+	display: block;
 }
 
 .image {
-    height: 120%;
-    width: 120%;
-
+    height: 100%;
+    width: 100%;
 	display: block;
 }
 
@@ -68,13 +68,11 @@ body {
 
 #image2 {
 	position: relative;
-	top: -10%;
 	left: -10%;
 }
 
 #image3 {
 	position: relative;
-	top: 0;
 	left: -10%;
 }
 
@@ -98,12 +96,12 @@ body {
 
 <!--Parallax layers-->
 <div id="container" class="container">
-    <ul id="scene" class="scene">
-        <li class="layer" data-depth="0.50"><div class="image" id="image5"><image src="images/0/5.png"></div></li>
-        <li class="layer" data-depth="0.60"><div class="image" id="image4"><image src="images/0/4.png"></div></li>
-        <li class="layer" data-depth="0.70"><div class="image" id="image3"><image src="images/0/3.png"></div></li>
-        <li class="layer" data-depth="0.80"><div class="image" id="image2"><image src="images/0/2.png"></div></li>
-        <li class="layer" data-depth="0.90"><div class="image" id="image1"><image src="images/0/1.png"></div></li>
+    <ul id="scene" class="scene" data-limit-x="0" data-limit-y="10">
+        <li class="layer" data-depth="0.50"><div class="image" id="image5"><img src="images/0/5.png"></div></li>
+        <li class="layer" data-depth="0.60"><div class="image" id="image4"><img src="images/0/4.png"></div></li>
+        <li class="layer" data-depth="0.70"><div class="image" id="image3"><img src="images/0/3.png"></div></li>
+        <li class="layer" data-depth="0.80"><div class="image" id="image2"><img src="images/0/2.png"></div></li>
+        <li class="layer" data-depth="0.90"><div class="image" id="image1"><img src="images/0/1.png"></div></li>
     </ul>
 </div>
 
@@ -127,10 +125,10 @@ position = 0;
 function refreshImage() {
 
     if ( imageSet == 0 ) {
-        $( ".image" ).each(function( index, element ) {
+        $( "img" ).each(function( index, element ) {
             if (set0[index] != "") {
 				
-                $( this ).attr("src", "images/" + position + "/" + set1[index] + ")");
+                $( this ).attr("src", "images/" + position + "/" + set1[index]);
                 console.log(set1[index]);
             } else {
                 $( this ).attr("src", "");
@@ -159,7 +157,7 @@ function refreshImage() {
 
 $( "#middle" ).click(function() { 
     position++;
-     if(position == 6) {
+     if(position == 2) {
         position = 0;
     } 
     
