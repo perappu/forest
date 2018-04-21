@@ -1,7 +1,7 @@
 <html>
 <head>
 
-<title>Deconstruction — Kyla Fodor</title>
+<title>Forest</title>
 
 <meta charset="utf-8">
 
@@ -85,6 +85,10 @@ body {
 
 }
 
+#audios {
+	display: none;
+}
+
 </style>
 
 </head>
@@ -105,6 +109,14 @@ body {
     </ul>
 </div>
 
+<audio class="audios" id="shuffle-audio" controls preload="none"> 
+   <source src="audio/shuffle.wav">
+</audio>
+
+<audio class="audios" id="bg-audio" controls preload="none"> 
+   <source src="audio/bg0.mp3">
+</audio>
+
 <!--Scripts-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="./js/jquery.parallax.min.js"></script>
@@ -119,6 +131,9 @@ set1 = ["5.png","4.png","3.png","2.png","1.png"];
 //Default settings for the current image and position
 imageSet = 0;
 position = 0;
+currentAudio = $('#bg-audio');
+
+currentAudio.trigger("play");
 
 //Function to refresh the shown image based on settings
 //Sets the background-image of each parallax layer to be the respective image in a given set
@@ -147,7 +162,9 @@ function refreshImage() {
                 console.log(set1[index]);
             }
         });
-        
+		
+		console.log(currentAudio.attr("src"));
+		
     }
 
 }
@@ -157,11 +174,23 @@ function refreshImage() {
 
 $( "#middle" ).click(function() { 
     position++;
+	
      if(position == 2) {
         position = 0;
     } 
+	
+	$('#shuffle-audio').trigger('play');
     
-    refreshImage();
+		currentAudio.animate({volume: 0}, 1000).delay(100);
+		currentAudio[0].currentTime = 0;
+		currentAudio.attr("src", "audio/bg" + position + ".mp3");
+		currentAudio[0].pause;
+		currentAudio[0].load;
+		currentAudio[0].oncanplaythrough = currentAudio[0].play();
+		currentAudio.animate({volume: 1}, 1000);
+	
+	refreshImage();
+
 });
   
 //Initialize parallax effect
