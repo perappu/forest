@@ -1,0 +1,189 @@
+<html>
+<head>
+
+<title>Deconstruction — Kyla Fodor</title>
+
+<meta charset="utf-8">
+
+<style>
+
+body {
+    padding: 0;
+    margin: 0;
+	background-color: #000000;
+}
+
+/* Position styling for parallax container and layers */
+
+#middle {
+    z-index: 900;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+.scene, .layer {
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0; 
+}
+
+.layer {
+    height: 100%;
+    width: 100%;
+}
+
+.scene {
+    display: block;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: relative;
+    margin: 0 auto;
+    width: 300%;
+    left: -100%;
+    height: 130%;
+    top: -10%;
+}
+
+.container {
+    width: 100%;
+    min-height: 768px;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.image {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+/* Default styling for each layer */
+#image1 {
+
+}
+
+#image2 {
+
+}
+
+#image3 {
+
+}
+
+#image4 {
+
+}
+
+#image5 {
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!--Invisible left/right/middle buttons-->
+<div id="middle"></div>
+
+<!--Parallax layers-->
+<div id="container" class="container">
+    <ul id="scene" class="scene">
+        <li class="layer" data-depth="0.50"><div class="image"><image id="image5" src="images/0/5.png"></div></li>
+        <li class="layer" data-depth="0.60"><div class="image"><image id="image4" src="images/0/4.png"></div></li>
+        <li class="layer" data-depth="0.70"><div class="image"><image id="image3" src="images/0/3.png"></div></li>
+        <li class="layer" data-depth="0.80"><div class="image"><image id="image2" src="images/0/2.png"></div></li>
+        <li class="layer" data-depth="0.90"><div class="image"><image id="image1" src="images/0/1.png"></div></li>
+    </ul>
+</div>
+
+<!--Scripts-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="./js/jquery.parallax.min.js"></script>
+<script src="./js/parallax.min.js"></script>
+<script>
+
+//Image arrays
+//Tells which file names to look for in each given set
+set0 = ["5.png","4.png","3.png","2.png","1.png"];
+set1 = ["5.png","4.png","3.png","2.png","1.png"];
+
+//Default settings for the current image and position
+imageSet = 0;
+position = 0;
+
+//Function to refresh the shown image based on settings
+//Sets the background-image of each parallax layer to be the respective image in a given set
+function refreshImage() {
+
+    if ( imageSet == 0 ) {
+        $( ".image" ).each(function( index, element ) {
+            if (set0[index] != "") {
+				
+                $( this ).attr("src", "images/" + position + "/" + set1[index] + ")");
+                console.log(set1[index]);
+            } else {
+                $( this ).attr("src", "");
+                console.log(set1[index]);
+            }
+        });
+      
+    } else if ( imageSet == 1 ) {
+        
+        $( ".image" ).each(function( index, element ) {
+            if (set1[index] != "") {
+                $( this ).attr("src", "images/" + position + "/" + set1[index] + ")");
+                console.log(set1[index]);
+            } else {
+                $( this ).attr("src", "");
+                console.log(set1[index]);
+            }
+        });
+        
+    }
+
+}
+
+//Controls for the left and right movement
+//Checks for and prevents the position from being impossible, i.e. higher than 2 or lower than 0
+
+$( "#middle" ).click(function() { 
+    position++;
+     if(position == 6) {
+        position = 0;
+    } 
+    
+    refreshImage();
+});
+  
+//Initialize parallax effect
+$('#scene').parallax();
+
+//Preload images
+function preload(arrayOfImages) {
+    $.each(arrayOfImages, function(index, image){
+        $('<img/>')[0].src = "images/0/" +image;
+        $('<img/>')[0].src = "images/1/" +image;
+    });
+}
+
+preload(set0);
+preload(set1);
+//preload(set2);
+//preload(set3);
+//preload(set4);
+//preload(set5);
+
+
+</script>
+
+</body>
+
+</html>
