@@ -130,6 +130,7 @@ set1 = ["5.png","4.png","3.png","2.png","1.png"];
 set2 = ["5.png","4.png","3.png","2.png","1.png"];
 set3 = ["5.png","4.png","3.png","2.png","1.png"];
 set4 = ["5.png","4.png","3.png","2.png","1.png"];
+set5 = ["5.png","4.png","3.png","2.png","1.png"];
 
 //Default settings for the current image and position
 imageSet = 0;
@@ -242,6 +243,9 @@ function preload(arrayOfImages) {
     $.each(arrayOfImages, function(index, image){
         $('<img/>')[0].src = "images/0/" +image;
         $('<img/>')[0].src = "images/1/" +image;
+		$('<img/>')[0].src = "images/2/" +image;
+		$('<img/>')[0].src = "images/3/" +image;
+		$('<img/>')[0].src = "images/4/" +image;
     });
 }
 
